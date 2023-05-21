@@ -9,7 +9,7 @@ create table if not exists Singers(
 
 create table if not exists Albums(
 	album_id serial primary key, 
-	year VARCHAR(4) not null,
+	year VARCHAR(4) not null
 );
 
 --Создаем таблицу Musical_genres
