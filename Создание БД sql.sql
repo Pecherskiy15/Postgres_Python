@@ -24,7 +24,7 @@ create table if not exists Musical_genres(
 create table if not exists Songs(
 	song_id serial primary key,
 	duration integer not null,
-	album_name VARCHAR(60)
+	album_name VARCHAR(60) foreign key Albums.album_id
 );
 
 --Создаем таблицу Collections
