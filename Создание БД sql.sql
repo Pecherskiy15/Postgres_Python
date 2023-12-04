@@ -1,61 +1,41 @@
---Создаем таблицу Singers
+create table if not exists genres(
+id serial primary key,
+name varchar(30) not null);
 
-create table if not exists Singers(
-	singer_id SERIAL primary KEY, 
-	nick_name VARCHAR(20) NOT NULL
+create table if not exists singers(
+id serial primary key,
+nickname varchar(30) not null);
+
+create table if not exists albums(
+id serial primary key,
+name varchar(30),
+release_date date not null);
+
+create table if not exists songs(
+id serial primary key,
+name varchar(80) not null,
+time time not null, 
+id_of_album integer not null references albums(id));
+
+create table if not exists collections(
+id serial primary key,
+name varchar(30) not null,
+release_date date not null);
+
+create table if not exists genres_and_singers(
+genre_id integer not null references genres(id),
+singer_id integer not null references singers(id),
+CONSTRAINT pk_for_gen_sin primary key (genre_id, singer_id)
 );
 
---Создаем таблицу Albums
-
-create table if not exists Albums(
-	album_id serial primary key, 
-	year VARCHAR(4) not null
+create table if not exists albums_and_singers(
+album_id integer not null references albums(id),
+singer_id integer not null references singers(id),
+CONSTRAINT pk_for_alb_sin primary key (album_id, singer_id)
 );
 
---Создаем таблицу Musical_genres
-
-create table if not exists Musical_genres(
-	genre_id serial primary key,
-	genre_name VARCHAR(30) not null
-);
-
---Создаем таблицу Songs
-
-create table if not exists Songs(
-	song_id serial primary key,
-	duration integer not null,
-	album_name VARCHAR(60) foreign key Albums.album_id
-);
-
---Создаем таблицу Collections
-
-create table if not exists Collections(
-	collection_id serial primary key,
-	year VARCHAR(4) not null
-);
-
-
---Создаем промежуточную таблицу songs_collections
-
-create table if not exists Songs_collections(
-	song_id integer not null references Songs(song_id),
-	collection_id integer references not null Collections(collection_id),
-	constraint pk primary key (song_id, collection_id)
-);
-
---Создаем промежуточную таблицу Singers_albums
-
-create table if not exists Singers_albums(
-	singer_id integer not null references Singers(singer_id),
-	album_id integer not null references Albums(album_id),
-	constraint pk primary key (singer_id, album_id)
-);
-
-
---Создаем промежуточную таблицу Genres_singers
-
-create table if not exists Genres_singers(
-	singer_id integer not null references Singers(singer_id),
-	genre_id integer not null references Musical_genres(genre_id),
-	constraint pk primary key (singer_id, genre_id)
+create table if not exists collections_and_songs(
+song_id integer not null references songs(id),
+collection_id integer not null references collections(id),
+CONSTRAINT pk_for_coll_son primary key (song_id, collection_id)
 );
