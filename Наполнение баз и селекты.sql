@@ -1,158 +1,253 @@
---Наполнение данными базу Singers
+-- Наполняем таблицу певцами
 
-insert into Singers(name, nick_name)
-values('Jared Higgins', 'JuiceWRLD');
+insert into singers(id, nickname)
+values(1, 'Juice WRLD');
 
-insert into Singers(name, nick_name)
-values('Oshea Jackson', 'Ice Cube');
+insert into singers(id, nickname)
+values(2, '50 cent');
 
-insert into Singers(name, nick_name)
-values('Curtise Jackson', '50 Cent');
+insert into singers(id, nickname)
+values(3, 'Snoop Dogg');
 
-insert into Singers(name, nick_name)
-values('Marschall Matthers', 'Eminem');
+insert into singers(id, nickname)
+values(4, 'Fall Out Boy');
 
-insert into Singers(name, nick_name)
-values('Andre Young', 'Dr.Dre');
+insert into singers(id, nickname)
+values(5, 'Halsey');
 
-insert into Singers(name, nick_name)
-values('Calvin Brodus Jr', 'Snoop Dogg');
+insert into singers(id, nickname)
+values(6, 'OG Buda');
 
-insert into Singers(name, nick_name)
-values('Tupac Shakur', '2Pac');
+insert into singers(id, nickname)
+values(7, 'David Guetta');
 
-insert into Singers(name, nick_name)
-values('Dwyane Carter', 'Lil Wayne');
+insert into singers(id, nickname)
+values(8, 'Miyagi');
 
-insert into Singers(name, nick_name)
-values('Shawn Carter', 'Jay-Z');
+-- Наполняем таблицу жанрами
 
-insert into Singers(name, nick_name)
-values('Jack Webster', 'Travis Scott')
+insert into genres(id, name)
+values(1, 'Hip-hop');
 
+insert into genres(id, name)
+values(2, 'Soul');
 
---Наполнение данными базу Musical_genres
+insert into genres(id, name)
+values(3, 'Rap');
 
-insert into Musical_genres(genre_name)
-values('Rap');
+insert into genres(id, name)
+values(4, 'Pop');
 
-insert into Musical_genres(genre_name)
-values('Rock');
+insert into genres(id, name)
+values(5, 'Rock');
 
-insert into Musical_genres(genre_name)
-values('RnB');
+-- Наполняем таблицу альбомы
 
-insert into Musical_genres(genre_name)
-values('Soul');
+insert into albums(id, name, release_date)
+values(1, 'Goodbye & Good Riddance', '23-08-2018');
 
-insert into Musical_genres(genre_name)
-values('Electro');
+insert into albums(id, name, release_date)
+values(2, 'Get Rich or Die Tryin', '01-01-2003');
 
---Наполнение данными базу Albums
+insert into albums(id, name, release_date)
+values(3, 'Doggystyle', '18-10-1993');
 
-insert into Albums(album_name, year)
-values('Tha Carter IV', 2008);
+insert into albums(id, name, release_date)
+values(4, 'WE didn’t start the FIRE', '28-07-2023');
 
-insert into Albums(album_name, year)
-values('Doggystyle', 2002);
+insert into albums(id, name, release_date)
+values(5, 'Manic', '16-01-2020');
 
-insert into Albums(album_name, year)
-values('2001', 2001);
+insert into albums(id, name, release_date)
+values(6, 'ОПГ СИТИ', '29-11-2019');
 
-insert into Albums(album_name, year)
-values('Goodbye & Good Riddance', 2016);
+insert into albums(id, name, release_date)
+values(7, 'One More Love', '01-01-2013');
 
-insert into Albums(album_name, year)
-values('Amerikaaz Most Wanted', 1993);
+insert into albums(id, name, release_date)
+values(8, 'Yamakasi', '17-07-2020');
 
-insert into Albums(album_name, year)
-values('Encore', 2004);
+-- Наполняем таблицу песни
 
-insert into Albums(album_name, year)
-values('Massacre', 2007);
+insert into songs(id, name, time, id_of_album)
+values(1, 'Blinding Lights', '3:20', 6);
 
-insert into Albums(album_name, year)
-values('All Eyes On Me', 1994);
+insert into songs(id, name, time, id_of_album)
+values(2, 'Cant" Feel My Face', '3:33', 6);
 
-insert into Albums(album_name, year)
-values('Astroworld', 2018);
+insert into songs(id, name, time, id_of_album)
+values(3, 'Call Out My Name', '3:48', 6);
 
+insert into songs(id, name, time, id_of_album)
+values(4, 'Starboy', '3:50', 6);
 
---Наполнение данными базу Songs
+insert into songs(id, name, time, id_of_album)
+values(5, 'Stressed Out', '3:22', 5);
 
-insert into Songs(song_name, duration, album_name)
-values('Sicko Mode', 245, 'Astroworld');
+insert into songs(id, name, time, id_of_album)
+values(6, 'Polarize', '3:45', 5);
 
-insert into Songs(song)name, duration, album_name)
-values('All Girls Are The Same', 224, 'Goodbye & Good Riddance');
+insert into songs(id, name, time, id_of_album)
+values(7, 'Hometown', '3:54', 5);
 
-insert into Songs(song_name, duration, album_name)
-values('Just A Lil bit', 200, 'Massacre');
+insert into songs(id, name, time, id_of_album)
+values(8, 'Lane Boy', '4:13', 5);
 
-insert into Songs(song_name, duration, album_name)
-values('Gin n Juice', 251, 'Doggystyle');
+insert into songs(id, name, time, id_of_album)
+values(9, 'Yamakasi', '4:23', 1);
 
-insert into Songs(song_name, duration, album_name)
-values('Who Am I (What’s My Name)?', 400, 'Doggystyle');
+insert into songs(id, name, time, id_of_album)
+values(10, 'Utopia', '3:29', 1);
 
-insert into Songs(song_name, duration, album_name)
-values('A Milli', 199, 'Tha Carter IV');
+insert into songs(id, name, time, id_of_album)
+values(11, 'Infinite Tsukuyomi', '3:23', 7);
 
-insert into Songs(song_name, duration, album_name)
-values('Still D.R.E.', 187, '2001');
+insert into songs(id, name, time, id_of_album)
+values(12, 'LUV', '3:15', 7);
 
-insert into Songs(song_name, duration, album_name)
-values('Cleanin Out My Closet', 201, 'Encore');
+insert into songs(id, name, time, id_of_album)
+values(13, 'дождь', '2:47', 2);
 
-insert into Songs(song_name, duration, album_name)
-values('Lucid Dreams', 209, 'Goodbye & Good Riddance');
+insert into songs(id, name, time, id_of_album)
+values(14, 'в сети', '1:53', 2);
 
-insert into Songs(song_name, duration, album_name)
-values('All Eyes On Me', 321, 'All Eyes On Me');
+insert into songs(id, name, time, id_of_album)
+values(15, 'Фитиль', '3:12', 3);
 
-insert into Songs(song_name, duration, album_name)
-values('She Will', 222, 'Tha Carter IV');
+-- Наполняем таблицу коллекции
 
-insert into Songs(song_name, duration, album_name)
-values('Whats the Difference', 235, '2001');
+insert into collections(id, name, release_date)
+values(1, 'Slowed', '17-11-2021');
 
-insert into Songs(song_name, duration, album_name)
-values('The Next Episode', 205, '2001');
+insert into collections(id, name, release_date)
+values(2, 'Go end', '09-07-2021');
 
-insert into Songs(song_name, duration, album_name)
-values('Black & White', 211, 'Goodbye & Good Riddance');
+insert into collections(id, name, release_date)
+values(3, 'Lead', '08-10-2020');
 
-insert into Songs(song_name, duration, album_name)
-values('Stan', 321, 'Encore');
+insert into collections(id, name, release_date)
+values(4, 'Fan pilots', '16-02-2018');
 
+insert into collections(id, name, release_date)
+values(5, 'Low dance', '25-04-2017');
 
---Название и год выхода альбомов, вышедших в 2018 году.
+insert into collections(id, name, release_date)
+values(6, 'Today Weekend', '14-06-2020');
 
-select album_name, year from Albums
-where year = 2018;
+insert into collections(id, name, release_date)
+values(7, 'Stone and shark', '12-09-2021');
 
---Название и продолжительность самого длительного трека.
+insert into collections(id, name, release_date)
+values(8, 'Soul of all songs', '30-10-2022');
 
-select song_name, duration from Songs
-where max(duration);
+-- Наполняем альбомы и певцы
 
---Название треков, продолжительность которых не менее 3,5 минут.
+insert into albums_and_singers(album_id, singer_id)
+values(1, 8);
 
-select song_name from Songs
-where duration >= 210;
+insert into albums_and_singers(album_id, singer_id)
+values(2, 2);
 
---Названия сборников, вышедших в период с 2018 по 2020 год включительно.
+insert into albums_and_singers(album_id, singer_id)
+values(3, 5);
 
-select collection_name from Collection
-where year between 2018 and 2020;
+insert into albums_and_singers(album_id, singer_id)
+values(4, 5);
 
---Исполнители, чьё имя состоит из одного слова.
+insert into albums_and_singers(album_id, singer_id)
+values(5, 4);
 
-select nick_name from Singers
-where nick_name not like '% %';
+insert into albums_and_singers(album_id, singer_id)
+values(6, 1);
 
---Название треков, которые содержат слово «мой» или «my».
+insert into albums_and_singers(album_id, singer_id)
+values(7, 3);
 
-select song_name from Songs
-where song_name like '%my%' or '%мой%';
+insert into albums_and_singers(album_id, singer_id)
+values(8, 6);
 
+insert into genres_and_singers(genre_id, singer_id)
+values(1, 1);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(1, 2);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(1, 3);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(1, 4);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(1, 5);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(2, 8);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(3, 3);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(3, 5);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(4, 1);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(4, 6);
+
+insert into genres_and_singers(genre_id, singer_id)
+values(4, 7);
+
+-- Наполняем коллекции и песни
+
+insert into collections_and_songs(collection_id, song_id)
+values(6, 1);
+
+insert into collections_and_songs(collection_id, song_id)
+values(6, 2);
+
+insert into collections_and_songs(collection_id, song_id)
+values(7, 2);
+
+insert into collections_and_songs(collection_id, song_id)
+values(6, 3);
+
+insert into collections_and_songs(collection_id, song_id)
+values(8, 3);
+
+insert into collections_and_songs(collection_id, song_id)
+values(4, 1);
+
+insert into collections_and_songs(collection_id, song_id)
+values(6, 14);
+
+insert into collections_and_songs(collection_id, song_id)
+values(2, 7);
+
+insert into collections_and_songs(collection_id, song_id)
+values(3, 7);
+
+insert into collections_and_songs(collection_id, song_id)
+values(1, 11);
+
+insert into collections_and_songs(collection_id, song_id)
+values(6, 11);
+
+insert into collections_and_songs(collection_id, song_id)
+values(5, 12);
+
+insert into collections_and_songs(collection_id, song_id)
+values(5, 7);
+
+insert into collections_and_songs(collection_id, song_id)
+values(4, 4);
+
+insert into collections_and_songs(collection_id, song_id)
+values(3, 13);
+
+insert into collections_and_songs(collection_id, song_id)
+values(8, 8);
+
+insert into collections_and_songs(collection_id, song_id)
+values(3, 15);
