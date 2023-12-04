@@ -1,22 +1,27 @@
+-- Создаем таблицу жанры
 create table if not exists genres(
 id serial primary key,
 name varchar(30) not null);
 
+-- Создаем таблицу певцы
 create table if not exists singers(
 id serial primary key,
 nickname varchar(30) not null);
 
+-- Создаем таблицу альбомы
 create table if not exists albums(
 id serial primary key,
 name varchar(30),
 release_date date not null);
 
+-- Создаем таблицу песни
 create table if not exists songs(
 id serial primary key,
 name varchar(80) not null,
 time time not null, 
 id_of_album integer not null references albums(id));
 
+-- Создаем таблицу коллекции
 create table if not exists collections(
 id serial primary key,
 name varchar(30) not null,
