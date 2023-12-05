@@ -117,28 +117,28 @@ values(15, 'Tantra', '4:15', 8);
 -- Наполняем таблицу коллекции
 
 insert into collections(id, name, release_date)
-values(1, 'Slowed', '17-11-2021');
+values(1, 'Dance', '17-11-2021');
 
 insert into collections(id, name, release_date)
-values(2, 'Go end', '09-07-2021');
+values(2, 'Old Rap', '09-07-2021');
 
 insert into collections(id, name, release_date)
-values(3, 'Lead', '08-10-2020');
+values(3, 'Hookah', '08-10-2020');
 
 insert into collections(id, name, release_date)
-values(4, 'Fan pilots', '16-02-2018');
+values(4, 'Funny', '16-02-2018');
 
 insert into collections(id, name, release_date)
-values(5, 'Low dance', '25-04-2017');
+values(5, 'Long Trip', '25-04-2017');
 
 insert into collections(id, name, release_date)
-values(6, 'Today Weekend', '14-06-2020');
+values(6, 'Banger', '14-06-2020');
 
 insert into collections(id, name, release_date)
-values(7, 'Stone and shark', '12-09-2021');
+values(7, 'Deep Feeling', '12-09-2021');
 
 insert into collections(id, name, release_date)
-values(8, 'Soul of all songs', '30-10-2022');
+values(8, 'Sadness', '30-10-2022');
 
 -- Наполняем альбомы и певцы
 
