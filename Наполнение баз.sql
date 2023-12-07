@@ -24,6 +24,7 @@ values(7, 'David Guetta');
 insert into singers(id, nickname)
 values(8, 'Miyagi');
 
+
 -- Наполняем таблицу жанрами
 
 insert into genres(id, name)
@@ -113,6 +114,9 @@ values(14, 'Minor', '2:55', 8);
 
 insert into songs(id, name, time, id_of_album)
 values(15, 'Tantra', '4:15', 8);
+
+insert into songs(id, name, time, id_of_album)
+values(15, 'Мало нам', '3:459', 8);
 
 -- Наполняем таблицу коллекции
 
