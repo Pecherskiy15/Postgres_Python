@@ -93,10 +93,10 @@ sale2 = Sale(2, 200, '11.09.2021', 2, 1)
 sale3 = Sale(3, 100, '11.09.2021', 3, 1)
 sale4 = Sale(4, 150, '11.09.2021', 4, 1)
 
-session.add(sale_1)
-session.add(sale_2)
-session.add(sale_3)
-session.add(sale_4)
+session.add(sale1)
+session.add(sale2)
+session.add(sale3)
+session.add(sale4)
 
 session.commit()
 
