@@ -1,7 +1,15 @@
 import sqlalchemy
 import sqlalchemy as sq
-from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+from sqlalchemy.orm import declarative_base, sessionmaker, DeclarativeBase
 
+DNS = 'postgresql+psycopg2://postgres:postgres@localhost:5432/postgres'
+engine = sqlalchemy.create_engine(DNS)
+Session = sessionmaker(bind=engine)
+session = Session()
+Base = DeclarativeBase
+
+class Base(DeclarativeBase):
+    pass
 
 class Stock(Base):
     __tablename__ = "stock"
@@ -11,6 +19,11 @@ class Stock(Base):
     id_shop = sq.Column(sq.Integer, sq.ForeignKey("shop.id"), nullable=False)
     count = sq.Column(sq.Integer, nullable=False)
 
+    def __init__(self, id, id_book, id_shop, count):
+        self.id = id
+        self.id = id_book
+        self.id_shop = id_shop
+        self.count = count
 
 class Book(Base):
     __tablename__ = "book"
@@ -19,6 +32,11 @@ class Book(Base):
     title = sq.Column(sq.Text, nullable=False)
     id_publisher = sq.Column(sq.Integer, sq.ForeignKey("publisher.id"), nullable=False)
 
+    def __init__(self, id, title, id_publisher):
+        self.id = id
+        self.title = title
+        self.id_publisher = id_publisher
+
 
 class Publisher(Base):
     __tablename__ = "publisher"
@@ -26,11 +44,19 @@ class Publisher(Base):
     id = sq.Column(sq.Integer, primary_key=True)
     name = sq.Column(sq.Text, nullable=False)
 
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+
 class Shop(Base):
     __tablename__ = "shop"
 
     id = sq.Column(sq.Integer, primary_key=True)
     name = sq.Column(sq.Text, nullable=False)
+
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
 
 class Sale(Base):
     __tablename__ = "sale"
@@ -41,69 +67,79 @@ class Sale(Base):
     id_stock = sq.Column(sq.Integer, sq.ForeignKey("stock.id"), nullable=False)
     count = sq.Column(sq.Text, nullable=False)
 
+    def __init__(self, id, price, date_sale, id_stock, count):
+        self.id = id
+        self.price = price
+        self.date_sale = date_sale
+        self.id_stock = id_stock
+        self.count = count
 
-DNS = 'postgresql://postgres:12345@localhost:5432/postgres'
-engine = sqlalchemy.create_engine(DNS)
-Session = sessionmaker(bind=engine)
-session = Session()
-Base = declarative_base()
+def get_shops(request):
+    result_request = session.query(
+        Book.title, Shop.name, Sale.price, Sale.date_sale,
+    ).select_from(Shop).join(Stock).join(Book).join(Publisher).join(Sale)
+    if request.isdigit():
+        result_request2 = session.query(Publisher).filter(Publisher.id == result_request).all()
+    else:
+        result_request2 = session.query(Publisher).filter(Publisher.name == result_request).all()
+    for book_name, shop_name, cost_sale, sale_date in result_request2:
+        print(f"{book_name: <40} | {shop_name: <10} | {cost_sale: <8} | {sale_date.strftime('%d-%m-%Y')}")
 
-publisherl = Publisher(1,'Пушкин')
-publisher2 = Publisher(2,'Чехов')
-publisher3 = Publisher(3, 'Толстой')
+def main():
+    publisher1 = Publisher(1, 'Пушкин')
+    publisher2 = Publisher(2, 'Чехов')
+    publisher3 = Publisher(3, 'Толстой')
 
-session.add(publisherl)
-session.add(publisher2)
-session.add(publisher3)
-session.commit()
+    session.add(publisher1)
+    session.add(publisher2)
+    session.add(publisher3)
+    session.commit()
 
-book1 = Book(1, 'Капитанская дочь', 1)
-book2 = Book(2, 'Руслан и Людмида', 1)
-book3 = Book(3, 'Война и Мир', 3)
-book4 = Book(4, 'Вишневый сад', 2)
+    book1 = Book(1, 'Капитанская дочь', 1)
+    book2 = Book(2, 'Руслан и Людмида', 1)
+    book3 = Book(3, 'Война и Мир', 3)
+    book4 = Book(4, 'Вишневый сад', 2)
 
-session.add(book1)
-session.add(book2)
-session.add(book3)
-session.add(book4)
-session.commit()
+    session.add(book1)
+    session.add(book2)
+    session.add(book3)
+    session.add(book4)
+    session.commit()
 
-shop1 = Shop(1, 'Буквоед')
-shop2 = Shop(2, 'Книги и Книжечки')
+    shop1 = Shop(1, 'Буквоед')
+    shop2 = Shop(2, 'Книги и Книжечки')
 
-session.add(shop1)
-session.add(shop2)
+    session.add(shop1)
+    session.add(shop2)
 
-session.commit()
+    session.commit()
 
-stock1 = Stock(1, 1, 1, 1)
-stock2 = Stock(2, 2, 1, 1)
-stock3 = Stock(3, 3, 2, 1)
-stock4 = Stock(4, 4, 2, 1)
+    stock1 = Stock(1, 1, 1, 1)
+    stock2 = Stock(2, 2, 1, 1)
+    stock3 = Stock(3, 3, 2, 1)
+    stock4 = Stock(4, 4, 2, 1)
 
-session.add(stock1)
-session.add(stock2)
-session.add(stock3)
-session.add(stock4)
+    session.add(stock1)
+    session.add(stock2)
+    session.add(stock3)
+    session.add(stock4)
 
-session.commit()
+    session.commit()
 
-sale1 = Sale(1, 300, '11.09.2021', 1, 1)
-sale2 = Sale(2, 200, '11.09.2021', 2, 1)
-sale3 = Sale(3, 100, '11.09.2021', 3, 1)
-sale4 = Sale(4, 150, '11.09.2021', 4, 1)
+    sale1 = Sale(1, 300, '11.09.2021', 1, 1)
+    sale2 = Sale(2, 200, '11.09.2021', 2, 1)
+    sale3 = Sale(3, 100, '11.09.2021', 3, 1)
+    sale4 = Sale(4, 150, '11.09.2021', 4, 1)
 
-session.add(sale1)
-session.add(sale2)
-session.add(sale3)
-session.add(sale4)
+    session.add(sale1)
+    session.add(sale2)
+    session.add(sale3)
+    session.add(sale4)
 
-session.commit()
-
-request1 = input()
-result = session.query(Book, Shop, Sale).filter(Publisher.name == request1).filter(Publisher.id == Book.id).filter(Book.id == Stock.id).filter(Stock.id == Shop.id).filter(Stock.id == Sale.id).all()
-for res in result:
-    print(f'{res[0]} | {res[1]} | {res[2]}')
+    session.commit()
 
 
-session.close()
+if __name__ == '__main__':
+    main()
+    input_request = input("Введите имя или ID публициста: ")
+    get_shops(input_request)
